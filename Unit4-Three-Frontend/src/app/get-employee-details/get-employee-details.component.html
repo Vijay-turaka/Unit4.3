@@ -1,0 +1,70 @@
+<div>
+  <h1 style="text-align-last: center">Employee Details</h1>
+  <button type="button" style="margin-right: 10%; margin-left: 38%">
+    <a routerLink="/register" style="text-decoration: none; color: black"
+      >Add a New Employee</a
+    >
+  </button>
+  <label>Choose filter</label>
+  <select
+    class="select-option"
+    #mySelect
+    (change)="onOptionsSelected(mySelect.value)"
+  >
+    <option value="none">none</option>
+    <option value="get-by-employee-id">Get By Employee Id</option>
+  </select>
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <table style="width: 75%; margin-left: 13%">
+    <tr>
+      <th>Employee Id</th>
+      <th>Name</th>
+      <th>Salary</th>
+      <th>Grade</th>
+      <th>Date Of Joining</th>
+      <th>Last Working Day</th>
+      <th>Status</th>
+
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let post of response">
+      <td>{{ post?.employee_id }}</td>
+      <td>{{ post?.name }}</td>
+      <td>{{ post?.salary }}</td>
+      <td>{{ post?.grade }}</td>
+      <td>{{ post?.date_of_joining }}</td>
+      <td>{{ post?.last_working_day }}</td>
+      <td>{{ post?.status }}</td>
+      <td>
+        <button type="button" style="margin-right: 15px">
+          <a
+            routerLink="/update"
+            [state]="post"
+            [queryParams]="{ id: post._id }"
+            style="text-decoration: none; color: black"
+            >Update</a
+          >
+        </button>
+        <button type="button" (click)="deleteUser(post._id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
