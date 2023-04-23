@@ -14,28 +14,6 @@ class BaseController {
     });
   }
 
-  findBySalary(params, callback) {
-    this.model
-      .find(params, (err, dbNewObject) => {
-        if (err) {
-          return callback(err);
-        }
-        return callback(null, dbNewObject);
-      })
-      .sort({ salary: -1 });
-  }
-
-  findByExperience(params, callback) {
-    this.model
-      .find(params, (err, dbNewObject) => {
-        if (err) {
-          return callback(err);
-        }
-        return callback(null, dbNewObject);
-      })
-      .sort({ experience: -1 });
-  }
-
   findByEmployeeId(params, callback) {
     this.model
       .find(params, (err, dbNewObject) => {
